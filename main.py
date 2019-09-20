@@ -38,13 +38,13 @@ if __name__ == '__main__':
     data.benchmark(bench_symbol, start_date)
     performance.portfolio()
     r = report.rep(fname=root_path + '/Reports/Daily Report ' + str(end_date) + '.pdf',fund_name=fund_name,logo_path="/Users/zhaoyanbo/Desktop/RIF/nic 4:5:19/Portfolio-Tracker-master/Reports/rif.jpg")
-    print '--------Cover-----'
+    print ('--------Cover-----')
     r.cover()
-    print '--------Performance-----'
+    print ('--------Performance-----')
     r.perf()
-    print '--------Metrics-----'
+    print ('--------Metrics-----')
     r.mets()
-    print '--------Divesification-----'
+    print ('--------Divesification-----')
     r.diversification()
     r.savePDF()
-    print 'I Ran'
+    print ('I Ran')
