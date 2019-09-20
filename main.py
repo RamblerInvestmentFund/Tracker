@@ -7,7 +7,7 @@ portfolio_info = pd.Series(allocations, index = symbols)
 portfolio_info = portfolio_info.sort_index()
 symbols = list(portfolio_info.index)
 allocations = portfolio_info.values
-start_date = dt.date(2019,01,01)
+start_date = dt.date(2019,1,1)
 fund_name = "Rambler Investment Fund"
 #Benchmark Index
 bench_symbol = "SPY"
