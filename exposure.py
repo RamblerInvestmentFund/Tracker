@@ -1,4 +1,4 @@
-from urllib import urlopen
+from urllib.request import urlopen
 from bs4 import BeautifulSoup as soup
 import requests,ssl
 import pandas as pd
