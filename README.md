@@ -6,9 +6,9 @@ This Git repository is dedicated to the portfolio tracking developed by the Quan
 ## Current Team Members
 
 	- Nicholas Barone		(Director 	- Sophomore)
-	- Riya G 			(Jr. Analyst 	- Junior)
+	- Riya Ghai 			(Jr. Analyst 	- Junior)
 	- Winter Haynes 		(Jr. Analyst 	- )
-	- Tony Deng			(Jr. Analyst 	- Junior)
+	- Sam Sendelbach		(Jr. Analyst	- Junior)
 
 ### Current Projects & Status
  
