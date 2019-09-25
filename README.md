@@ -9,6 +9,7 @@ This Git repository is dedicated to the portfolio tracking developed by the Quan
 	- Riya Ghai 			(Jr. Analyst 	- Junior)
 	- Winter Haynes 		(Jr. Analyst 	- )
 	- Sam Sendelbach		(Jr. Analyst	- Junior)
+	- Anthony Campana		(Jr. Analyst	- Sophomore)
 
 ### Current Projects & Status
  
