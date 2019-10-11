@@ -1,4 +1,4 @@
-import bs4 as bs
+port bs4 as bs
 from main import root_path, symbols
 import pandas as pd
 import numpy as np
@@ -9,7 +9,7 @@ import requests
 import inspect
 import re
 import ssl
-from urllib import urlopen
+from urllib.request import urlopen
 
 #Check if data downloaded to run functions
 if os.path.exists(root_path + '/Daily Data/Portfolio/Portfolio Value.csv') and os.path.exists(
@@ -49,7 +49,7 @@ if os.path.exists(root_path + '/Daily Data/Portfolio/Portfolio Value.csv') and o
                     pe = re.findall("(\d+\.\d{1,3})", string)
                     fundamental_df.at[symbols[count],"Trailing P/E"] = pe[0]
                 except IndexError:
-                    print 'P/E not found for:' + symbol
+                    print ('P/E not found for:' + symbol)
                     fundamental_df.at[symbols[count],"Trailing P/E"] = None
 
 
@@ -58,7 +58,7 @@ if os.path.exists(root_path + '/Daily Data/Portfolio/Portfolio Value.csv') and o
                     fpe = re.findall("(\d+\.\d{1,3})", string)
                     fundamental_df.at[symbols[count],"Forward P/E"] = fpe[0]
                 except IndexError:
-                    print 'Forward P/E not found for:' + symbol
+                    print ('Forward P/E not found for:' + symbol)
                     fundamental_df.at[symbols[count],"Forward P/E"] = None
 
                 try:
@@ -66,7 +66,7 @@ if os.path.exists(root_path + '/Daily Data/Portfolio/Portfolio Value.csv') and o
                     peg = re.findall("(\d+\.\d{1,3})", string)
                     fundamental_df.ix[symbols[count], "PEG"] = peg[0]
                 except IndexError:
-                    print 'PEG not found for:' + symbol
+                    print ('PEG not found for:' + symbol)
                     fundamental_df.ix[symbols[count], "PEG"] = None
 
                 try:
@@ -74,7 +74,7 @@ if os.path.exists(root_path + '/Daily Data/Portfolio/Portfolio Value.csv') and o
                     pb = re.findall("(\d+\.\d{1,3})", string)
                     fundamental_df.ix[symbols[count], "Price/Book"] = pb[0]
                 except IndexError:
-                    print 'P/B not found for:' + symbol
+                    print ('P/B not found for:' + symbol)
                     fundamental_df.ix[symbols[count], "Price/Book"] = None
 
                 try:
@@ -82,7 +82,7 @@ if os.path.exists(root_path + '/Daily Data/Portfolio/Portfolio Value.csv') and o
                     beta = re.findall("(\d+\.\d{1,3})", string)
                     fundamental_df.ix[symbols[count], "Beta"] = beta[0]
                 except IndexError:
-                    print 'Beta not found for:' + symbol
+                    print ('Beta not found for:' + symbol)
                     fundamental_df.ix[symbols[count], "Beta"] = None
 
                 try:
@@ -91,7 +91,7 @@ if os.path.exists(root_path + '/Daily Data/Portfolio/Portfolio Value.csv') and o
                     fundamental_df.ix[symbols[count], "Dividend Yield"] = str(div[0])[:-1]
 
                 except IndexError:
-                    print 'Dividend not found for:' + symbol
+                    print ('Dividend not found for:' + symbol)
                     fundamental_df.ix[symbols[count], "Dividend Yield"] = None
 
                 count += 1
@@ -109,9 +109,9 @@ if os.path.exists(root_path + '/Daily Data/Portfolio/Portfolio Value.csv') and o
             call_name = inspect.stack()[1][3]
 
             if call_name != "mets":
-                print '\n'
-                print '----------Weighted Fundamentals-----------'
-                print weighted_metrics
+                print ('\n')
+                print ('----------Weighted Fundamentals-----------')
+                print (weighted_metrics)
 
             #Save data
             weighted_metrics.to_csv(root_path + '/Daily Data/Portfolio/Portfolio Fundis.csv', index=True)
@@ -141,7 +141,7 @@ if os.path.exists(root_path + '/Daily Data/Portfolio/Portfolio Value.csv') and o
                 try:  # strptime throws an exception if the input doesn't match the pattern
                     rf_start_date = dt.datetime.strptime(userInDate, '%Y-%m-%d')
                 except ValueError:
-                    print "Invalid Input. Please try again."
+                    print ("Invalid Input. Please try again.")
                 else:
                     isValid = True
 
@@ -190,18 +190,18 @@ if os.path.exists(root_path + '/Daily Data/Portfolio/Portfolio Value.csv') and o
             call_name = inspect.stack()[1][3]
 
             if call_name != "mets":
-                print '\n'
-                print '----------Risk Adjusted Metrics-----------'
-                print "Current Risk Free Rate " + rate + ": " + "{0:.2f}%".format(rf * 100)
-                print "Portfolio Raw Return: " + "{0:.2f}%".format(port_ytd * 100)
-                print "Benchmark Return: " + "{0:.2f}%".format(spy_ytd * 100)
-                print "Portfolio Volatility: " + "{0:.2f}%".format(port_std * 100)
-                print "Market Volatility: " + "{0:.2f}%".format(bench_std * 100)
-                print "Portfolio Sharpe: " + "{0:.2f}".format(sharpe_port)
-                print "Market Sharpe: " + "{0:.2f}".format(sharpe_spy)
-                print "Portfolio Treynor: " + "{0:.2f}".format(port_treynor)
-                print "Market Treynor: " + "{0:.2f}".format(market_treynor)
-                print "Portfolio Alpha: " + "{0:.2f}%".format(port_alpha * 100)
+                print ('\n')
+                print ('----------Risk Adjusted Metrics-----------')
+                print ("Current Risk Free Rate " + rate + ": " + "{0:.2f}%".format(rf * 100))
+                print ("Portfolio Raw Return: " + "{0:.2f}%".format(port_ytd * 100))
+                print ("Benchmark Return: " + "{0:.2f}%".format(spy_ytd * 100))
+                print ("Portfolio Volatility: " + "{0:.2f}%".format(port_std * 100))
+                print ("Market Volatility: " + "{0:.2f}%".format(bench_std * 100))
+                print ("Portfolio Sharpe: " + "{0:.2f}".format(sharpe_port))
+                print ("Market Sharpe: " + "{0:.2f}".format(sharpe_spy))
+                print ("Portfolio Treynor: " + "{0:.2f}".format(port_treynor))
+                print ("Market Treynor: " + "{0:.2f}".format(market_treynor))
+                print ("Portfolio Alpha: " + "{0:.2f}%".format(port_alpha * 100))
 
             else:
                 data = [['','Volatility','Sharpe Ratio', 'Treynor Ratio','Alpha'],
@@ -211,4 +211,4 @@ if os.path.exists(root_path + '/Daily Data/Portfolio/Portfolio Value.csv') and o
                 return data
 
 else:
-    print 'You have not downloaded the necessary data in order to calculated weighted fundamentals. Please run the port_data module.'
+    print ('You have not downloaded the necessary data in order to calculated weighted fundamentals. Please run the port_data module.')
