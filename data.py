@@ -6,7 +6,7 @@ import pandas as pd
 import sys
 from main import root_path
 from pandas_datareader import data as pdr
-import fix_yahoo_finance as yf
+import yfinance as yf
 yf.pdr_override()
 
 #Dates
@@ -45,7 +45,7 @@ def portfolio(symbols, allocations, start_date):
     #Portfolio Data
 
     port_data = pdr.get_data_yahoo(symbols, start=start_date, end=end_date)['Adj Close']
-    print port_data
+    print (port_data)
     #port_data.columns = symbols
     # except:
     #     print "Unable to download the yahoo data"
@@ -56,12 +56,12 @@ def portfolio(symbols, allocations, start_date):
     for column in temp_data.columns:
         c = temp_data[column]
         if c.isnull().all():
-            print 'WARNING:  The following symbol: '+str(column)+' has no timeseries data. This could be due to an invalid ticker, or an entry not supported by Quandl. \n You will not be able to proceed with any function in the script until all of the symbols provided are downloaded.'
+            print ('WARNING:  The following symbol: '+str(column)+' has no timeseries data. This could be due to an invalid ticker, or an entry not supported by Quandl. \n You will not be able to proceed with any function in the script until all of the symbols provided are downloaded.')
             sys.exit()
-    print len(port_data)
+    print (len(port_data))
     #print port_data
-    print port_data.columns.values
-    print list(set(port_data.columns.values) - set(symbols))
+    print (port_data.columns.values)
+    print (list(set(port_data.columns.values) - set(symbols)))
     port_val = port_data * allocations
     # Remove Rows With No Values
 
@@ -84,12 +84,12 @@ def portfolio(symbols, allocations, start_date):
     port_weights.columns = ["Weight"]
     port_weights = port_weights.drop(port_weights.index[len(port_weights) - 1])
 
-    port_val.to_csv(root_path+'/Daily Data/Portfolio/Portfolio Value.csv',index=True)
-    port_rets.to_csv(root_path+'/Daily Data/Portfolio/Portfolio Returns.csv' ,index=True)
-    port_data.to_csv(root_path+'/Daily Data/Portfolio/Portfolio Daily Prices.csv' ,index=True)
-    port_weights.to_csv(root_path+'/Daily Data/Portfolio/Portfolio Weights.csv' ,index=True)
+    port_val.to_csv(root_path+'/Daily Data/Portfolio/Portfolio_Value.csv',index=True)
+    port_rets.to_csv(root_path+'/Daily Data/Portfolio/Portfolio_Returns.csv' ,index=True)
+    port_data.to_csv(root_path+'/Daily Data/Portfolio/Portfolio_Daily_Prices.csv' ,index=True)
+    port_weights.to_csv(root_path+'/Daily Data/Portfolio/Portfolio_Weights.csv' ,index=True)
 
-    print 'Portfolio data has successfully been downloaded.'
+    print ('Portfolio data has successfully been downloaded.')
 def benchmark(bench_symbol, start_date):
 
     #quandl.ApiConfig.api_key = api_key
@@ -120,7 +120,7 @@ def benchmark(bench_symbol, start_date):
     bench_data.to_csv(root_path+'/Daily Data/Benchmark/Benchmark Price Data.csv' ,index=True)
     bench_rets.to_csv(root_path+'/Daily Data/Benchmark/Benchmark Returns.csv' ,index=True)
 
-    print 'Benchmark data has finished downloading.'
+    print ('Benchmark data has finished downloading.')
 # symbols = ['LVMUY', 'FMS', 'GSK', 'NGG', 'AMZN', 'NLY', 'ARCH', 'BAX', 'BA', 'CELH', 'CL', 'XOM', 'GD', 'LMT', 'MDR', 'MRK', 'MU', 'NOC', 'PANW', 'PXD', 'RTN', 'SNAP', 'TSLA', 'VZ', 'WDC', 'UUP', 'VIXY', 'SHY', 'TLT', 'IAU', 'MINT']
 # allocations = [158, 250, 1106, 228, 8, 419, 287, 288, 70, 2358, 213, 252, 9, 5, 172, 567, 40, 77, 141, 9, 85, 100, 4, 747, 36, 494, 150, 2490, 425, 6768, 148070]
 # portfolio_info = pd.Series(allocations, index = symbols)
