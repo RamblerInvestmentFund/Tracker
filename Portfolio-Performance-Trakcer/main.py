@@ -21,7 +21,7 @@ method = "AVG"
 api_key = ""
 
 #Dirctory Input For Data and Reports
-root_path = "C:\\Users\\barni\\Documents\\LUC\\RIF\\QUANT\\Portfolio-Performance-Tracker-master\\"
+root_path = "C:\\Users\\barni\\Documents\\LUC\\RIF\\GitHub\\Tracker\\Portfolio-Performance-Trakcer"
 
 #------------Run Program----------------------#
 if __name__ == '__main__':
