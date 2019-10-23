@@ -10,7 +10,7 @@ style.use('ggplot')
 
 
 def portfolio():
-    port_rets = pd.read_csv(os.path.join(root_path, "Daily Data", "Portfolio", "Portfolio Returns.csv")
+    port_rets = pd.read_csv(os.path.join(root_path, "Daily Data", "Portfolio", "Portfolio Returns.csv"))
     port_data = pd.read_csv(os.path.join(root_path, "Daily Data", "Portfolio", "Portfolio Daily Prices.csv"))
     port_val = pd.read_csv(os.path.join(root_path, "Daily Data", "Portfolio", "Portfolio Value.csv"))
     bench_rets = pd.read_csv(os.path.join(root_path, "Daily Data", "Portfolio", "Benchmark Returns.csv"))
