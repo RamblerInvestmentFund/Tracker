@@ -1,6 +1,9 @@
 #------------Necessary Variables--------------#
 import datetime as dt
 import pandas as pd
+import os
+
+
 symbols = ['LVMUY', 'FMS', 'GSK', 'NGG', 'AMZN', 'NLY', 'ARCH', 'BAX', 'BA', 'CELH', 'CL', 'XOM', 'GD', 'LMT', 'MDR', 'MRK', 'MU', 'NOC', 'PANW', 'PXD', 'RTN', 'SNAP', 'TSLA', 'VZ', 'WDC', 'UUP', 'VIXY', 'SHY', 'TLT', 'IAU', 'MINT']
 allocations = [158, 350, 1106, 228, 8, 419, 287, 288, 70, 2358, 213, 252, 9, 5, 172, 567, 40, 77, 141, 9, 85, 100, 4, 747, 36, 494, 150, 2490, 425, 6768, 1477]
 portfolio_info = pd.Series(allocations, index = symbols)
@@ -21,7 +24,7 @@ method = "AVG"
 api_key = ""
 
 #Dirctory Input For Data and Reports
-root_path = "C:\\Users\\barni\\Documents\\LUC\\RIF\\GitHub\\Tracker\\Portfolio-Performance-Trakcer"
+root_path = os.getcwd()
 
 #------------Run Program----------------------#
 if __name__ == '__main__':
