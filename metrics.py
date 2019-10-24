@@ -11,9 +11,9 @@ import re
 import ssl
 from urllib.request import urlopen
 
-#Check if data downloaded to run functions
-# clean this up
-if os.path.exists(os.path.join(root_path, "Daily Data", "Portfolio", "Portfolio_Value.csv")) and os.path.exists(
+
+def fundis(rate, method):
+    if os.path.exists(os.path.join(root_path, "Daily Data", "Portfolio", "Portfolio_Value.csv")) and os.path.exists(
         os.path.join(root_path, "Daily Data", "Portfolio", "Portfolio_Daily_Prices.csv")) \
         and os.path.exists(os.path.join(root_path, "Daily Data", "Portfolio", "Portfolio_Value.csv")) and os.path.exists(
     os.path.join(root_path, "Daily Data", "Portfolio", "Portfolio_Returns.csv")) \
@@ -21,7 +21,7 @@ if os.path.exists(os.path.join(root_path, "Daily Data", "Portfolio", "Portfolio_
     os.path.join(root_path, "Daily Data", "Benchmark", "Benchmark Returns.csv")) \
         and os.path.exists(os.path.join(root_path, "Daily Data", "Portfolio", "Portfolio_Returns.csv")):
 
-    def fundis(rate, method):
+
         method = method.lower()
         if os.path.exists(os.path.join(root_path, "Daily Data", "Portfolio", "Portfolio_Returns.csv")):
             weights = pd.read_csv(os.path.join(root_path, "Daily Data", "Portfolio", "Portfolio_Weights.csv"), index_col=0)
@@ -211,5 +211,10 @@ if os.path.exists(os.path.join(root_path, "Daily Data", "Portfolio", "Portfolio_
 
                 return data
 
-else:
-    print ('You have not downloaded the necessary data in order to calculated weighted fundamentals. Please run the port_data module.')
+
+    else:
+        print ('You have not downloaded the necessary data in order to calculated weighted fundamentals. Please run the port_data module.')
+
+#Check if data downloaded to run functions
+# clean this up
+
