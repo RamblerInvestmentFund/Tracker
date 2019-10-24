@@ -82,7 +82,6 @@ def portfolio():
                 float(bench_rets.iloc[-1:, -1]) * 100))
             print('\n')
 
-            plt.show()
 
         return port_rets, bench_rets
 
