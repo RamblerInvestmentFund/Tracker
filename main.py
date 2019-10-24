@@ -40,7 +40,7 @@ if __name__ == '__main__':
     data.portfolio(symbols, allocations, start_date)
     data.benchmark(bench_symbol, start_date)
     performance.portfolio()
-    r = report.rep(fname=root_path + '/Reports/Daily Report ' + str(end_date) + '.pdf',fund_name=fund_name,logo_path=os.path.join(root_path, "Reports", "rif.jpg"))
+    r = report.rep(fname=os.path.join(root_path, "Reports", "Report_{}.pdf".format(str(end_date))),fund_name=fund_name,logo_path=os.path.join(root_path, "Reports", "rif.jpg"))
     print ('--------Cover-----')
     r.cover()
     print ('--------Performance-----')
