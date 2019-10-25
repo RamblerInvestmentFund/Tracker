@@ -115,8 +115,8 @@ def fundis(rate, method):
                 print (weighted_metrics)
 
             #Save data
-            weighted_metrics.to_csv(root_path + '/Daily Data/Portfolio/Portfolio Fundis.csv', index=True)
-            fundis.to_csv(root_path + '/Daily Data/Portfolio/Asset Fundis.csv', index=True)
+            weighted_metrics.to_csv(os.path.join(root_path, "Daily Data", "Portfolio", "Portfolio Fundis.csv", index=True))
+            fundis.to_csv(os.path.join(root_path, "Daily Data", "Portfolio", "Asset Fundis.csv", index=True))
 
             port_rets = pd.read_csv(os.path.join(root_path, "Daily Data", "Portfolio", "Portfolio_Returns.csv"))
             port_data = pd.read_csv(os.path.join(root_path, "Daily Data", "Portfolio", "Portfolio_Daily_Prices.csv"))
