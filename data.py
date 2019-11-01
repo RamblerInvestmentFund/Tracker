@@ -91,7 +91,7 @@ def portfolio(symbols, allocations, start_date):
     port_weights.to_csv(os.path.join(root_path, "Daily Data", "Portfolio", "Portfolio_Weights.csv") ,index=True)
 
     print ('Portfolio data has successfully been downloaded.')
-def benchmark(bench_symbol, start_date):
+def benchmark(bench_symbols, bench_allocations, start_date):
 
     #quandl.ApiConfig.api_key = api_key
 
@@ -99,7 +99,7 @@ def benchmark(bench_symbol, start_date):
     for folder in folders:
         if not os.path.exists(folder):
             os.mkdir(folder)
-
+            
     smo = start_date.month
     sday = start_date.day
     syear = start_date.year
@@ -109,14 +109,24 @@ def benchmark(bench_symbol, start_date):
     #bench_data = pd.read_csv(
     #    'http://finance.google.com/finance/historical?q='+str(bench_symbol)+'&startdate='+ str(smonth) +'+'+ str(sday) +'+'+ str(syear) +'&enddate='+ str(emonth) +'+'+ str(eday) +'+'+ str(eyear) +'&output=csv',
     #    index_col=0)["Close"]
-    bench_data = pdr.get_data_yahoo(bench_symbol, start_date, end_date)["Adj Close"]
+    bench_data = pdr.get_data_yahoo(bench_symbols, start_date, end_date)["Adj Close"]
     bench_data.index = pd.to_datetime(bench_data.index)
+    print (bench_data)
+    bench_val = bench_data * bench_allocations
 
-    #Reverse Frame
-    bench_rets = bench_data.iloc[::-1]
+    bench_val = bench_val.fillna(bench_val.mean())
+
+    bench_val['Benchmark Value'] = bench_val.sum(axis=1)
+
+    # Calculate Benchmark Returns
+    bench_rets = bench_val.pct_change()
     bench_rets = bench_rets.dropna(how='any')
 
-    bench_rets = bench_rets.pct_change()
+    #Reverse Frame
+    #bench_rets = bench_data.iloc[:: -1]
+    #bench_rets = bench_rets.dropna(how='any')
+
+    #bench_rets = bench_rets.pct_change()
 
     
     bench_data.to_csv(os.path.join(root_path, "Daily Data", "Benchmark", "Benchmark Price Data.csv") ,index=True)

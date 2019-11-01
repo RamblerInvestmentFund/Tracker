@@ -170,7 +170,7 @@ def fundis(rate, method):
             beta = float(weighted_metrics.iloc[3])
 
             #YTD Return
-            spy_ytd = float(bench_data.iloc[0, 1]) / float(bench_data.iloc[-1, 1]) - 1
+            bench_ytd = float(bench_data.iloc[0, 1]) / float(bench_data.iloc[-1, 1]) - 1
             port_ytd = float(port_val['Portfolio Value'].iloc[-1]) / float(port_val['Portfolio Value'].iloc[0]) - 1
 
             # STDEV
@@ -186,7 +186,7 @@ def fundis(rate, method):
 
             # Sharpe
             sharpe_port = (port_ytd - rf) / port_std
-            sharpe_spy = (spy_ytd - rf) / bench_std
+            sharpe_bench = (bench_ytd - rf) / bench_std
 
             call_name = inspect.stack()[1][3]
 
