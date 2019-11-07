@@ -15,7 +15,7 @@ def portfolio():
     port_val = pd.read_csv(os.path.join(root_path, "Daily Data", "Portfolio", "Portfolio_Value.csv"))
     bench_rets = pd.read_csv(os.path.join(root_path, "Daily Data", "Benchmark", "Benchmark Returns.csv"))
     bench_data = pd.read_csv(os.path.join(root_path, "Daily Data", "Benchmark", "Benchmark Price Data.csv"))
-    bench_rets.columns = ['DJCI', 'DXY', 'SPY', 'TLT', 'Date', 'Return']
+    bench_rets.columns = ['DJCI', 'DXY', 'SPY', 'TLT', 'Benchmark Value']
     bench_data.columns = ['DJCI', 'DXY', 'SPY', 'TLT', 'Date', 'Close']
 
     if os.path.exists(os.path.join(root_path, "Daily Data", "Portfolio", "Portfolio_Value.csv")) and os.path.exists(os.path.join(root_path, "Daily Data", "Portfolio", "Portfolio_Daily_Prices.csv")) \

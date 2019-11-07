@@ -179,9 +179,10 @@ def fundis(rate, method):
 
             # Treynor
             port_treynor = (port_ytd - rf) / beta
-            market_treynor = (spy_ytd - rf) / 1
+            bench_treynor = (bench_ytd - rf) / bench_beta
 
             # Alpha
+            # Weighted regression based on benchmark
             port_alpha = port_ytd - (rf + (spy_ytd - rf) * beta)
 
             # Sharpe
@@ -201,13 +202,13 @@ def fundis(rate, method):
                 print ("Portfolio Sharpe: " + "{0:.2f}".format(sharpe_port))
                 print ("Market Sharpe: " + "{0:.2f}".format(sharpe_spy))
                 print ("Portfolio Treynor: " + "{0:.2f}".format(port_treynor))
-                print ("Market Treynor: " + "{0:.2f}".format(market_treynor))
+                print ("Market Treynor: " + "{0:.2f}".format(benchmark_treynor))
                 print ("Portfolio Alpha: " + "{0:.2f}%".format(port_alpha * 100))
 
             else:
                 data = [['','Volatility','Sharpe Ratio', 'Treynor Ratio','Alpha'],
                         ['Portfolio',"{0:.2f}%".format(port_std * 100),"{0:.2f}".format(sharpe_port),"{0:.2f}".format(port_treynor),"{0:.2f}%".format(port_alpha * 100)],
-                        ['Benchmark',"{0:.2f}%".format(bench_std * 100),"{0:.2f}".format(sharpe_spy),"{0:.2f}".format(market_treynor),"-"]]
+                        ['Benchmark',"{0:.2f}%".format(bench_std * 100),"{0:.2f}".format(sharpe_spy),"{0:.2f}".format(benchmark_treynor),"-"]]
 
                 return data
 
