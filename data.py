@@ -131,7 +131,8 @@ def benchmark(bench_symbols, bench_allocations, start_date):
     
     bench_data.to_csv(os.path.join(root_path, "Daily Data", "Benchmark", "Benchmark Price Data.csv") ,index=True)
     bench_rets.to_csv(os.path.join(root_path, "Daily Data", "Benchmark", "Benchmark Returns.csv") ,index=True)
-
+    bench_val.to_csv(os.path.join(root_path, "Daily Data", "Benchmark", "Benchmark Value.csv") ,index=True)
+    
     print ('Benchmark data has finished downloading.')
 # symbols = ['LVMUY', 'FMS', 'GSK', 'NGG', 'AMZN', 'NLY', 'ARCH', 'BAX', 'BA', 'CELH', 'CL', 'XOM', 'GD', 'LMT', 'MDR', 'MRK', 'MU', 'NOC', 'PANW', 'PXD', 'RTN', 'SNAP', 'TSLA', 'VZ', 'WDC', 'UUP', 'VIXY', 'SHY', 'TLT', 'IAU', 'MINT']
 # allocations = [158, 250, 1106, 228, 8, 419, 287, 288, 70, 2358, 213, 252, 9, 5, 172, 567, 40, 77, 141, 9, 85, 100, 4, 747, 36, 494, 150, 2490, 425, 6768, 148070]

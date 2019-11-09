@@ -15,8 +15,10 @@ def portfolio():
     port_val = pd.read_csv(os.path.join(root_path, "Daily Data", "Portfolio", "Portfolio_Value.csv"))
     bench_rets = pd.read_csv(os.path.join(root_path, "Daily Data", "Benchmark", "Benchmark Returns.csv"))
     bench_data = pd.read_csv(os.path.join(root_path, "Daily Data", "Benchmark", "Benchmark Price Data.csv"))
-    bench_rets.columns = ['DJCI', 'DXY', 'SPY', 'TLT', 'Benchmark Value']
-    bench_data.columns = ['DJCI', 'DXY', 'SPY', 'TLT', 'Date', 'Close']
+
+    
+    bench_rets.columns = ['Date', 'DJCI', 'DXY', 'SPY', 'TLT', 'Benchmark Value']
+    bench_data.columns = ['Date', 'DJCI', 'DXY', 'SPY', 'TLT',]
 
     if os.path.exists(os.path.join(root_path, "Daily Data", "Portfolio", "Portfolio_Value.csv")) and os.path.exists(os.path.join(root_path, "Daily Data", "Portfolio", "Portfolio_Daily_Prices.csv")) \
             and os.path.exists(os.path.join(root_path, "Daily Data", "Portfolio", "Portfolio_Value.csv")) and os.path.exists(os.path.join(root_path, "Daily Data", "Portfolio", "Portfolio_Returns.csv")) \
@@ -36,7 +38,7 @@ def portfolio():
         perf.index = pd.to_datetime(perf.index)
 
         port_data = perf["Portfolio Value"]
-        bench_data = perf["Close"]
+        bench_val = perf["Benchmark Value"]
 
         fig = plt.figure()
         ax = fig.add_subplot(111, facecolor='#576884')
