@@ -15,7 +15,7 @@ def portfolio():
     port_val = pd.read_csv(os.path.join(root_path, "Daily Data", "Portfolio", "Portfolio_Value.csv"))
     bench_rets = pd.read_csv(os.path.join(root_path, "Daily Data", "Benchmark", "Benchmark Returns.csv"))
     bench_data = pd.read_csv(os.path.join(root_path, "Daily Data", "Benchmark", "Benchmark Price Data.csv"))
-
+    bench_val = pd.read_csv(os.path.join(root_path, "Daily Data", "Benchmark", "Benchmark Value.csv")) 
     
     bench_rets.columns = ['Date', 'DJCI', 'DXY', 'SPY', 'TLT', 'Benchmark Value']
     bench_data.columns = ['Date', 'DJCI', 'DXY', 'SPY', 'TLT',]
@@ -31,12 +31,15 @@ def portfolio():
         port_val = port_val.set_index('Date')
         port_values = port_val['Portfolio Value']
         port_values = pd.DataFrame(port_values)
+        bench_val = bench_val.set_index('Date')
+        bench_values = bench_val['Benchmark Value']
         bench_values = bench_data.set_index('Date')
 
         #perf = port_values.to_frame().join(bench_data.to_frame())
-        perf = pd.merge(port_values, bench_values, left_index=True, right_index=True)
+        perf = pd.merge(port_values, bench_val, left_index=True, right_index=True)
         perf.index = pd.to_datetime(perf.index)
 
+        print(bench_val)
         port_data = perf["Portfolio Value"]
         bench_val = perf["Benchmark Value"]
 
@@ -52,7 +55,7 @@ def portfolio():
 
         ax2 = ax.twinx()
         ax2.grid(None)
-        lns2 = ax2.plot(bench_d, linestyle='-', color='#6aa527', label='SPY')
+        lns2 = ax2.plot(bench_data, linestyle='-', color='#6aa527', label='SPY')
 
         # added these three lines
         lns = lns1 + lns2
