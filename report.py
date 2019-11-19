@@ -83,17 +83,18 @@ class rep():
         bperf = "{0:.2f}%".format(float(bench_rets.iloc[-1:, -1]) * 100)
 
         port_val = pd.read_csv(os.path.join(root_path, "Daily Data", "Portfolio", "Portfolio_Value.csv"), index_col=0)
-        bench_data = pd.read_csv(os.path.join(root_path, "Daily Data", "Benchmark", "Benchmark Price Data.csv"), index_col=0, names = ['Benchmark Values'])
+        bench_val = pd.read_csv(os.path.join(root_path, "Daily Data", "Benchmark", "Benchmark Value.csv"), index_col=0)
 
 
         port_val = port_val['Portfolio Value']
         port_val.index = pd.to_datetime(port_val.index)
-        bench_data.index = pd.to_datetime(bench_data.index)
+        bench_val= bench_val['Benchmark Value']
+        bench_val.index = pd.to_datetime(bench_val.index)
 
         praw = "{0:.2f}%".format((port_val.iloc[-1] / port_val.iloc[0] - 1) * 100)
         pytd = "{0:.2f}%".format((port_val.iloc[-1] / float(port_val[port_val.index.isin(dates)]) - 1) * 100)
-        braw = "{0:.2f}%".format((float(bench_data.iloc[-1]) / float(bench_data.iloc[0]) - 1) * 100)
-        bytd = "{0:.2f}%".format((float(bench_data.iloc[-1]) / float(bench_data[bench_data.index.isin(dates)].iloc[0]) - 1) * 100)
+        braw = "{0:.2f}%".format((float(bench_val.iloc[-1]) / float(bench_val.iloc[0]) - 1) * 100)
+        bytd = "{0:.2f}%".format((float(bench_val.iloc[-1]) / float(bench_val[bench_val.index.isin(dates)].iloc[0]) - 1) * 100)
 
         prets = []
         brets = []
@@ -103,7 +104,7 @@ class rep():
             month_add = start_date + relativedelta(months=+x)
             pret = port_val.iloc[port_val.index.get_loc(month_add, method='nearest')]/port_val.iloc[0] - 1
             prets.append("{0:.2f}%".format(pret * 100))
-            bret = float(bench_data.iloc[bench_data.index.get_loc(month_add, method='nearest')]) / float(bench_data.iloc[0]) - 1
+            bret = float(bench_val.iloc[bench_val.index.get_loc(month_add, method='nearest')]) / float(bench_val.iloc[0]) - 1
             brets.append("{0:.2f}%".format(bret * 100))
 
         #Labels for Asset Returns

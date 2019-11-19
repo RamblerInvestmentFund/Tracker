@@ -123,11 +123,12 @@ def fundis(rate, method):
             port_val = pd.read_csv(os.path.join(root_path, "Daily Data", "Portfolio", "Portfolio_Value.csv"))
             bench_rets = pd.read_csv(root_path+'/Daily Data/Benchmark/Benchmark Returns.csv')
             bench_data = pd.read_csv(os.path.join(root_path, "Daily Data", "Benchmark", "Benchmark Price Data.csv"))
-            bench_rets.columns = ['Date', 'Return']
-            bench_data.columns = ['Date', 'Close']
+            bench_rets.columns = ['Date', 'DJCI', 'DXY', 'SPY', 'TLT', 'Benchmark Value']
+            bench_data.columns = ['Date', 'DJCI', 'DXY', 'SPY', 'TLT']
 
             weighted_metrics = pd.read_csv(root_path + '/Daily Data/Portfolio/Portfolio Fundis.csv', index_col=0)
-
+            weighted_benchmark = pd.read_csv(root_path +'/Daily Data/Benchmark/Benchmarkis.csv)
+        
             # Get Day of month for risk free data
             end_date = dt.date.today()
             emo = end_date.month
@@ -169,13 +170,15 @@ def fundis(rate, method):
 
             beta = float(weighted_metrics.iloc[3])
 
+            bench_beta = float(weighted_benchmark.iloc[3])
+
             #YTD Return
             bench_ytd = float(bench_data.iloc[0, 1]) / float(bench_data.iloc[-1, 1]) - 1
             port_ytd = float(port_val['Portfolio Value'].iloc[-1]) / float(port_val['Portfolio Value'].iloc[0]) - 1
 
             # STDEV
             port_std = port_rets['Portfolio Value'].std() * np.sqrt(252)
-            bench_std = float(bench_rets.std() * np.sqrt(252))
+            bench_std = float(bench_rets['Benchmark Value'].std() * np.sqrt(252))
 
             # Treynor
             port_treynor = (port_ytd - rf) / beta

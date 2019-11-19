@@ -54,8 +54,9 @@ def portfolio():
         z = bench_data[0:len(bench_data)]
 
         ax2 = ax.twinx()
+        print(ax.twinx())
         ax2.grid(None)
-        lns2 = ax2.plot(bench_data, linestyle='-', color='#6aa527', label='SPY')
+        lns2 = ax2.plot(bench_val, linestyle='-', color='#6aa527', label='Benchmark')
 
         # added these three lines
         lns = lns1 + lns2
