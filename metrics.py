@@ -122,7 +122,7 @@ def fundis(rate, method):
             port_data = pd.read_csv(os.path.join(root_path, "Daily Data", "Portfolio", "Portfolio_Daily_Prices.csv"))
             port_val = pd.read_csv(os.path.join(root_path, "Daily Data", "Portfolio", "Portfolio_Value.csv"))
             bench_rets = pd.read_csv(root_path+'/Daily Data/Benchmark/Benchmark Returns.csv')
-            bench_data = pd.read_csv(os.path.join(root_path, "Daily Data", "Benchmark", "Benchmark Price Data.csv"))
+            bench_data = pd.read_csv(os.path.join(root_path, "Daily Data", "Benchmark", "Benchmark Price Data.csv"), header=None)
             bench_rets.columns = ['Date', 'Return']
             bench_data.columns = ['Date', 'Close']
 
@@ -169,8 +169,19 @@ def fundis(rate, method):
 
             beta = float(weighted_metrics.iloc[3])
 
+
+
+            
+
+
+
+
+
             #YTD Return
-            spy_ytd = float(bench_data.iloc[0, 1]) / float(bench_data.iloc[-1, 1]) - 1
+            print(bench_data.head())
+            print(float(bench_data.iloc[0, 1]))
+            print(float(bench_data.iloc[-1, 1]))
+            spy_ytd = (float(bench_data.iloc[-1, 1]) / float(bench_data.iloc[0, 1])) - 1
             port_ytd = float(port_val['Portfolio Value'].iloc[-1]) / float(port_val['Portfolio Value'].iloc[0]) - 1
 
             # STDEV
@@ -178,8 +189,8 @@ def fundis(rate, method):
             bench_std = float(bench_rets.std() * np.sqrt(252))
 
             # Treynor
-            port_treynor = (port_ytd - rf) / beta
-            market_treynor = (spy_ytd - rf) / 1
+            port_treynor = ((port_ytd - rf) / beta) * 100
+            market_treynor = ((spy_ytd - rf) / 1) * 100
 
             # Alpha
             port_alpha = port_ytd - (rf + (spy_ytd - rf) * beta)
@@ -187,6 +198,12 @@ def fundis(rate, method):
             # Sharpe
             sharpe_port = (port_ytd - rf) / port_std
             sharpe_spy = (spy_ytd - rf) / bench_std
+
+            print(f"rf: {rf}")
+            print(f"port_ytd: {port_ytd}")
+            print(f"port_std: {port_std}")
+            print(f"spy_ytd: {spy_ytd}")
+            print(f"bench_std: {bench_std}")
 
             call_name = inspect.stack()[1][3]
 

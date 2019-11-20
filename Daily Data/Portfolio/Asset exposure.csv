@@ -1,32 +1,32 @@
 Symbol,Sector,Industry
-AMZN,Consumer Cyclical,Specialty Retail
-ARCH,Basic Materials,Coal
+AMZN,Consumer Cyclical,Internet Retail
+ARCH,Energy,Thermal Coal
 BA,Industrials,Aerospace & Defense
 BAX,Healthcare,Medical Instruments & Supplies
-CELH,Consumer Defensive,Beverages - Soft Drinks
+CELH,Consumer Goods,Beverages - Soft Drinks
 CL,Consumer Defensive,Household & Personal Products
-FMS,Healthcare,Medical Care
+FMS,Healthcare,Medical Care Facilities
 GD,Industrials,Aerospace & Defense
-GSK,Healthcare,Drug Manufacturers - Major
+GSK,Healthcare,Drug Manufacturers—General
 IAU,Exchange Traded Fund,Commodities Precious Metals
 LMT,Industrials,Aerospace & Defense
 LVMUY,Consumer Cyclical,Luxury Goods
-MDR,Energy,Oil & Gas Equipment & Services
+MDR,Basic Materials,Oil & Gas Equipment & Services
 MINT,Cash,Cash
 MRK,Healthcare,Drug Manufacturers - Major
-MU,Technology,Semiconductor Memory
-NGG,Utilities,Utilities - Diversified
-NLY,Real Estate,REIT - Diversified
+MU,Technology,Semiconductors
+NGG,Utilities,Utilities—Diversified
+NLY,Real Estate,REIT—Mortgage
 NOC,Industrials,Aerospace & Defense
-PANW,Technology,Software - Application
+PANW,Technology,Software—Infrastructure
 PXD,Energy,Oil & Gas E&P
 RTN,Industrials,Aerospace & Defense
 SHY,Exchange Traded Fund,Short Government
-SNAP,Technology,Internet Content & Information
+SNAP,Technology,Internet Software & Services
 TLT,Exchange Traded Fund,Long Government
 TSLA,Consumer Cyclical,Auto Manufacturers
 UUP,Exchange Traded Fund,Multicurrency
 VIXY,Exchange Traded Fund,Volatility
 VZ,Communication Services,Telecom Services
-WDC,Technology,Data Storage
+WDC,Technology,Computer Hardware
 XOM,Energy,Oil & Gas Integrated

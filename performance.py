@@ -38,9 +38,11 @@ def portfolio():
         port_data = perf["Portfolio Value"]
         bench_d = perf["Close"]
 
+        scaled_port_data = (port_data/port_data[0])
+
         fig = plt.figure()
         ax = fig.add_subplot(111, facecolor='#576884')
-        lns1 = ax.plot(port_data, linestyle='-', color="white", label='Portfolio')
+        lns1 = ax.plot(scaled_port_data, linestyle='-', color="white", label='Portfolio')
 
         # Fill Under
         x = port_data.index
@@ -48,18 +50,26 @@ def portfolio():
         q = bench_data.index
         z = bench_data[0:len(bench_data)]
 
+        scaled_bench_data = (bench_d/bench_d[0])
+
         ax2 = ax.twinx()
         ax2.grid(None)
-        lns2 = ax2.plot(bench_d, linestyle='-', color='#6aa527', label='SPY')
+        lns2 = ax2.plot(scaled_bench_data, linestyle='-', color='#6aa527', label='SPY')
+        ax2.get_yaxis().set_major_formatter(tkr.PercentFormatter(xmax=1.0))
 
+        
         # added these three lines
+
         lns = lns1 + lns2
         labs = [l.get_label() for l in lns]
         ax.legend(lns, labs, loc=0)
         ax.grid(linestyle='--', alpha=0.2)
-
-        ax.get_yaxis().set_major_formatter(
-            tkr.FuncFormatter(lambda x, p: format(int(x), ',')))
+        ax.get_yaxis().set_major_formatter(tkr.PercentFormatter(xmax=1.0))
+        
+        # ax.set_ylim(90, 130)
+        # ax2.set_ylim(90, 130)
+        ax.set_ylim([1.0, 1.3])
+        ax2.set_ylim([1.0, 1.3])
 
         # Annotate Last Price
         bbox_props = dict(boxstyle='round', fc='w', ec='k', lw=1)
